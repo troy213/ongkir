@@ -1,0 +1,176 @@
+:root {
+  --blue-1: #0468bf;
+  --blue-2: #0477bf;
+  --blue-3: #048abf;
+  --brown-1: #a67244;
+  --brown-2: #d9ab82;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+h1,
+h3 {
+  margin: 1em 0 0 0;
+  color: var(--blue-3);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.section-origin,
+.section-destination {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 1em 0 0.5em 0;
+}
+
+select,
+input {
+  height: 30px;
+  padding-left: 0.5em;
+}
+
+select {
+  max-width: 450px;
+}
+
+input {
+  max-width: 442px;
+}
+
+button {
+  border: 0;
+  border-radius: 5px;
+  background: var(--blue-1);
+  color: whitesmoke;
+  font-weight: bolder;
+  margin: 1em 0 0 0;
+  height: 50px;
+  width: 100%;
+  max-width: 450px;
+  transition: background 100ms linear;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--blue-3);
+}
+
+button:disabled {
+  cursor: default;
+  background: #bbb;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+}
+
+.result h3 {
+  text-align: center;
+}
+
+.result-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result-card {
+  background: var(--blue-1);
+  color: whitesmoke;
+  padding: 1em;
+  border-radius: 5px;
+  border: 0;
+  margin: 1em;
+}
+
+.result-card div p:first-child {
+  font-size: 0.75rem;
+}
+
+.result-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin: 0 0 1em 0;
+}
+
+@media (min-width: 500px) {
+  .container {
+    align-items: center;
+  }
+
+  .section-main {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .section-origin {
+    width: 50%;
+    margin-right: 0.5em;
+  }
+
+  .section-destination {
+    width: 50%;
+    margin-left: 0.5em;
+  }
+
+  button {
+    margin-top: 3em;
+    width: 200px;
+  }
+}
+
+@media (min-width: 720px) {
+  .container {
+    align-items: stretch;
+  }
+
+  .result {
+    margin-top: 2em;
+  }
+
+  .result-container {
+    justify-content: stretch;
+  }
+
+  .result h3 {
+    text-align: left;
+  }
+
+  .result-card:first-child {
+    margin-left: 0;
+  }
+}
