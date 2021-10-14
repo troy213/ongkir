@@ -12,6 +12,7 @@ const App = () => {
   const [company, setCompany] = useState('')
   const [weight, setWeight] = useState(1000)
   const [result, setResult] = useState([])
+  const [btnDisabled, setBtnDisabled] = useState(false)
 
   const province = useFetch(
     'https://ongkir-tritera-erlangga.herokuapp.com/province'
@@ -32,6 +33,7 @@ const App = () => {
   }, [receiverProv])
 
   const getCost = () => {
+    setBtnDisabled(true)
     axios
       .post('https://ongkir-tritera-erlangga.herokuapp.com/cost', {
         origin: senderCity,
@@ -42,6 +44,7 @@ const App = () => {
       .then((res) => {
         setCompany(res.data.result[0].name)
         setResult(res.data.result[0].costs)
+        setBtnDisabled(false)
       })
       .catch((err) => {
         console.log(err)
@@ -57,9 +60,17 @@ const App = () => {
   return (
     <div className='container'>
       {province.isLoading || city.isLoading || destCity.isLoading ? (
-        <h3 className='loading-text'>Loading</h3>
+        <div className='loading-container'>
+          <h3 className='loading-text'>Loading</h3>
+        </div>
       ) : province.isError || city.isError || destCity.isError ? (
-        <h3 className='loading-text'>Error</h3>
+        <div className='loading-container'>
+          <h3 className='error-text'>Error</h3>
+          <p className='error-text'>
+            Oops! our server has reached daily request limit to the 3rd party
+            server, please try again tomorrow.
+          </p>
+        </div>
       ) : (
         <>
           <main className='section-main'>
@@ -164,7 +175,8 @@ const App = () => {
               senderCity === 0 ||
               receiverCity === 0 ||
               weight < 1 ||
-              weight > 30000
+              weight > 30000 ||
+              btnDisabled
                 ? true
                 : false
             }
@@ -174,9 +186,9 @@ const App = () => {
         </>
       )}
       <section className='result'>
-        {company !== null && <h3>{company}</h3>}
+        {company.length > 0 && <h3>{company}</h3>}
         <div className='result-container'>
-          {result.length > 0 &&
+          {result.length > 0 ? (
             result.map((res) => {
               const { value, etd } = res.cost[0]
               const { service } = res
@@ -193,7 +205,16 @@ const App = () => {
                   </div>
                 </div>
               )
-            })}
+            })
+          ) : (
+            <>
+              {company.length > 0 && (
+                <p className='my-1'>
+                  No service found for this courier to this area
+                </p>
+              )}
+            </>
+          )}
         </div>
       </section>
     </div>

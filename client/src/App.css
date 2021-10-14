@@ -36,12 +36,47 @@ h3 {
   color: var(--blue-3);
 }
 
+.my-1 {
+  margin: 1em 0;
+}
+
 .container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   width: 90%;
   max-width: 920px;
   margin: 0 auto;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-text {
+  margin: 0;
+  color: var(--blue-1);
+  animation: animate 2s linear infinite;
+}
+
+.error-text {
+  text-align: center;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .section-origin,
