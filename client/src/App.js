@@ -101,10 +101,12 @@ const App = () => {
               >
                 <option value='0'>- city -</option>
                 {city.data.map((value) => {
-                  const { city_id, city_name } = value
+                  const { city_id, type, city_name } = value
                   return (
                     <option value={city_id} key={city_id}>
-                      {city_name}
+                      {(type === 'Kabupaten' ? 'Kab.' : 'Kota') +
+                        ' ' +
+                        city_name}
                     </option>
                   )
                 })}
@@ -158,10 +160,12 @@ const App = () => {
               >
                 <option value='0'>- city -</option>
                 {destCity.data.map((value) => {
-                  const { city_id, city_name } = value
+                  const { city_id, type, city_name } = value
                   return (
                     <option value={city_id} key={city_id}>
-                      {city_name}
+                      {(type === 'Kabupaten' ? 'Kab.' : 'Kota') +
+                        ' ' +
+                        city_name}
                     </option>
                   )
                 })}
